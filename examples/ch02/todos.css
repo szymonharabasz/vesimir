@@ -1,0 +1,43 @@
+h1 {
+ font-size: 3rem;
+ font-weight: 100;
+}
+
+.roboto-page {
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: bold;
+  font-variation-settings:
+    "wdth" 100;
+  }
+
+input, label {
+  display: block;
+}
+
+label {
+  font-style: italic;
+}
+
+input {
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+}
+
+button {
+  padding: 0.5rem 1.5rem;
+  margin: 0.25rem 0;
+}
+
+.app-container {
+  width: fit-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.todo-text {
+  width: 15rem;
+}
+

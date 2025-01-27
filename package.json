@@ -1,0 +1,16 @@
+{
+  "name": "vesimir-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "serve:examples": "npx http-server . -o ./examples/ -c-1 -p 8080"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "A project to learn how to write a frontend framework",
+  "private": "true",
+  "workspaces": [
+    "packages/runtime"
+  ]
+}
