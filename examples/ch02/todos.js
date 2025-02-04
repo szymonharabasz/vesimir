@@ -1,8 +1,8 @@
 const todos = ['Send the dog', 'Walk the plants', 'Water the chairs'];
 
-const addTodoInput = document.createElementById('todo-input');
-const addTodoButton = document.createElementById('add-todo-btn')
-const todosList = document.createElementById('todos-list');
+const addTodoInput = document.getElementById('todo-input');
+const addTodoButton = document.getElementById('add-todo-btn')
+const todosList = document.getElementById('todos-list');
 
 for (const todo of todos) {
     todosList.append(renderTodoInReadMode(todo));
@@ -10,6 +10,7 @@ for (const todo of todos) {
 
 addTodoInput.addEventListener('input', (e) => {
     addTodoButton.disabled = addTodoInput.value.length < 3;
+    console.log("", addTodoButton.value, addTodoButton.value.length, addTodoButton.disabled);
 });
 
 addTodoInput.addEventListener('keydown', ({key}) => {
@@ -27,5 +28,5 @@ function renderTodoInReadMode(todo) {
 }
 
 function addTodo() {
-    
+
 }

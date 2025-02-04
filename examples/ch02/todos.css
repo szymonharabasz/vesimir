@@ -28,6 +28,24 @@ input {
 button {
   padding: 0.5rem 1.5rem;
   margin: 0.25rem 0;
+  border-width: 0.1em;
+  border-style: solid;
+  border-radius: 0.3em;
+  transition: all 0.2s linear;
+}
+
+button:enabled {
+  background-color: darkcyan;
+  color: white;
+}
+
+button:disabled {
+  background-color: darkgray;
+  color: white;
+}
+
+button:active {
+  border-style: inset;
 }
 
 .app-container {
