@@ -3,6 +3,12 @@ h1 {
  font-weight: 100;
 }
 
+.item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .roboto-page {
   font-family: "Roboto", serif;
   font-optical-sizing: auto;
@@ -48,6 +54,14 @@ button:active {
   border-style: inset;
 }
 
+button.button-in-row {
+  margin-right: 0.25rem;
+}
+
+button.button-cancel {
+  background-color: darkolivegreen;
+}
+
 .app-container {
   width: fit-content;
   display: block;
@@ -56,6 +70,6 @@ button:active {
 }
 
 .todo-text {
-  width: 15rem;
+  width: 25rem;
 }
 

@@ -25,6 +25,9 @@ addTodoButton.addEventListener('click', () => {
 
 function renderTodoInReadMode(todo) {
     const li = document.createElement("li");
+    const div = document.createElement("div");
+    div.classList.add("item-container");
+    li.append(div);
     const span = document.createElement("span");
     span.textContent = todo;
     span.addEventListener('dblclick', () => {
@@ -32,7 +35,7 @@ function renderTodoInReadMode(todo) {
         todosList.replaceChild(renderTodoInEditMode(todo), todosList.childNodes[idx]);
 
     });
-    li.append(span);
+    div.append(span);
 
     const button = document.createElement("button");
     button.textContent = 'Done';
@@ -40,16 +43,21 @@ function renderTodoInReadMode(todo) {
         const idx = todos.indexOf(todo);
         removeTodo(idx);
     });
-    li.append(button);
+    div.append(button);
     return li;
 }
 
 function renderTodoInEditMode(todo) {
     const li = document.createElement('li');
+    const div = document.createElement('div');
+    div.classList.add("item-container");
+    li.append(div);
     const input = document.createElement('input');
     input.type = 'text';
     input.value = todo;
-    li.append(input);
+    div.append(input);
+    const divBtns = document.createElement("div");
+    div.append(divBtns);
 
     const saveBtn = document.createElement("button");
     saveBtn.textContent = 'Save';
@@ -57,7 +65,8 @@ function renderTodoInEditMode(todo) {
         const idx = todos.indexOf(todo);
         updateTodo(idx, input.value);
     });
-    li.append(saveBtn);
+    saveBtn.classList.add("button-in-row");
+    divBtns.append(saveBtn);
 
     const cancelBtn = document.createElement("button");
     cancelBtn.textContent = "Cancel";
@@ -65,7 +74,8 @@ function renderTodoInEditMode(todo) {
         const idx = todos.indexOf(todo);
         todosList.replaceChild(renderTodoInReadMode(todo), todosList.childNodes[idx]);
     });
-    li.append(cancelBtn);
+    cancelBtn.classList.add("button-cancel");
+    divBtns.append(cancelBtn);
 
     return li;
 }
