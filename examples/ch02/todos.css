@@ -29,6 +29,7 @@ label {
 input {
   padding: 0.5rem;
   margin: 0.25rem 0;
+  width: auto;
 }
 
 button {
@@ -71,5 +72,13 @@ button.button-cancel {
 
 .todo-text {
   width: 25rem;
+}
+
+.todo-done {
+  text-decoration: line-through;
+}
+
+.button-todo-done {
+  visibility: hidden;
 }
 
