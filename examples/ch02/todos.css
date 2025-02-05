@@ -83,10 +83,14 @@ button.button-cancel {
 }
 
 .errors-list {
+  display: flex;
+  align-items: center;
   color: red;
   background-color: lightpink;
   font-weight: bold;
   padding: 1rem 2rem;
+  overflow: hidden;
+  transition: height 0.3s ease-out;
 }
 
 .errors-list-empty {

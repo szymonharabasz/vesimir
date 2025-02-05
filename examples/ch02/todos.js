@@ -25,13 +25,24 @@ for (const todo of todos) {
 }
 
 addTodoInput.addEventListener("input", (e) => {
-  addTodoButton.disabled = addTodoInput.value.length < 3;
+  const description = addTodoInput.value;
+  const alreadyExists = todoNotDone(description);
+  addTodoButton.disabled = description.length < 3 || alreadyExists;
   errors = [];
+  if (alreadyExists) {
+    errors.push(
+      `"${description}" is already on the TODO list and is not yet done.`
+    );
+  }
   renderErrors();
 });
 
 addTodoInput.addEventListener("keydown", ({ key }) => {
-  if (key === "Enter" && addTodoInput.value.length >= 3) {
+  if (
+    key === "Enter" &&
+    addTodoInput.value.length >= 3 &&
+    !todoNotDone(addTodoInput.value)
+  ) {
     addTodo();
   }
 });
@@ -121,22 +132,11 @@ function addTodo() {
     description: description,
     done: false,
   };
-  console.log(todos);
-  console.log(todos.filter((t) => t.description === description && !t.done));
-  if (
-    todos.filter((t) => t.description === description && !t.done).length === 0
-  ) {
-    todos.push(newTodo);
-    const todo = renderTodoInReadMode(newTodo);
-    todosList.append(todo);
-    addTodoInput.value = "";
-    addTodoButton.disabled = true;
-  } else {
-    errors.push(
-      `"${description}" is already on the TODO list and is not yet done.`
-    );
-    renderErrors();
-  }
+  todos.push(newTodo);
+  const todo = renderTodoInReadMode(newTodo);
+  todosList.append(todo);
+  addTodoInput.value = "";
+  addTodoButton.disabled = true;
 }
 
 function updateTodo(index, description) {
@@ -153,6 +153,7 @@ function indexOfTodo(todo) {
 
 function renderErrors() {
   errorList.innerHTML = "";
+  console.log(errors);
   if (errors.length > 0) {
     for (const error of errors) {
       const li = document.createElement("li");
@@ -161,8 +162,15 @@ function renderErrors() {
       li.append(span);
       errorList.append(li);
     }
-    errorList.classList.remove("errors-list-empty");
+    const height = errorList.scrollHeight;
+    errorList.style.height = 2 * height + "px";
   } else {
-    errorList.classList.add("errors-list-empty");
+    errorList.style.height = 0;
   }
+}
+
+function todoNotDone(description) {
+  return (
+    todos.filter((t) => t.description === description && !t.done).length > 0
+  );
 }
