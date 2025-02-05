@@ -116,11 +116,15 @@ function addTodo() {
     description: description,
     done: false,
   };
-  todos.push(newTodo);
-  const todo = renderTodoInReadMode(newTodo);
-  todosList.append(todo);
-  addTodoInput.value = "";
-  addTodoButton.disabled = true;
+  console.log(todos);
+  console.log(todos.filter(t => t.description === description && !t.done));
+  if (todos.filter(t => t.description === description && !t.done).length === 0) {
+    todos.push(newTodo);
+    const todo = renderTodoInReadMode(newTodo);
+    todosList.append(todo);
+    addTodoInput.value = "";
+    addTodoButton.disabled = true;
+  }
 }
 
 function updateTodo(index, description) {
@@ -130,5 +134,5 @@ function updateTodo(index, description) {
 }
 
 function indexOfTodo(todo) {
-  return todos.findIndex((t) => t.description === todo.description);
+  return todos.findIndex((t) => t.description === todo.description && t.done === todo.done);
 }
