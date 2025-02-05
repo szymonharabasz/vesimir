@@ -71,7 +71,7 @@ button.button-cancel {
 }
 
 .todo-text {
-  width: 25rem;
+  width: 27rem;
 }
 
 .todo-done {
@@ -80,5 +80,16 @@ button.button-cancel {
 
 .button-todo-done {
   visibility: hidden;
+}
+
+.errors-list {
+  color: red;
+  background-color: lightpink;
+  font-weight: bold;
+  padding: 1rem 2rem;
+}
+
+.errors-list-empty {
+  padding: 0;
 }
 

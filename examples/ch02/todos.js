@@ -13,9 +13,12 @@ const todos = [
   },
 ];
 
+let errors = [];
+
 const addTodoInput = document.getElementById("todo-input");
 const addTodoButton = document.getElementById("add-todo-btn");
 const todosList = document.getElementById("todos-list");
+const errorList = document.getElementById("errors-list");
 
 for (const todo of todos) {
   todosList.append(renderTodoInReadMode(todo));
@@ -23,6 +26,8 @@ for (const todo of todos) {
 
 addTodoInput.addEventListener("input", (e) => {
   addTodoButton.disabled = addTodoInput.value.length < 3;
+  errors = [];
+  renderErrors();
 });
 
 addTodoInput.addEventListener("keydown", ({ key }) => {
@@ -117,13 +122,20 @@ function addTodo() {
     done: false,
   };
   console.log(todos);
-  console.log(todos.filter(t => t.description === description && !t.done));
-  if (todos.filter(t => t.description === description && !t.done).length === 0) {
+  console.log(todos.filter((t) => t.description === description && !t.done));
+  if (
+    todos.filter((t) => t.description === description && !t.done).length === 0
+  ) {
     todos.push(newTodo);
     const todo = renderTodoInReadMode(newTodo);
     todosList.append(todo);
     addTodoInput.value = "";
     addTodoButton.disabled = true;
+  } else {
+    errors.push(
+      `"${description}" is already on the TODO list and is not yet done.`
+    );
+    renderErrors();
   }
 }
 
@@ -134,5 +146,23 @@ function updateTodo(index, description) {
 }
 
 function indexOfTodo(todo) {
-  return todos.findIndex((t) => t.description === todo.description && t.done === todo.done);
+  return todos.findIndex(
+    (t) => t.description === todo.description && t.done === todo.done
+  );
+}
+
+function renderErrors() {
+  errorList.innerHTML = "";
+  if (errors.length > 0) {
+    for (const error of errors) {
+      const li = document.createElement("li");
+      const span = document.createElement("span");
+      span.textContent = error;
+      li.append(span);
+      errorList.append(li);
+    }
+    errorList.classList.remove("errors-list-empty");
+  } else {
+    errorList.classList.add("errors-list-empty");
+  }
 }
