@@ -153,7 +153,6 @@ function indexOfTodo(todo) {
 
 function renderErrors() {
   errorList.innerHTML = "";
-  console.log(errors);
   if (errors.length > 0) {
     for (const error of errors) {
       const li = document.createElement("li");
@@ -163,7 +162,7 @@ function renderErrors() {
       errorList.append(li);
     }
     const height = errorList.scrollHeight;
-    errorList.style.height = 2 * height + "px";
+    errorList.style.height = height + "px";
   } else {
     errorList.style.height = 0;
   }
