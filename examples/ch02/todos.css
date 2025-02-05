@@ -9,6 +9,15 @@ h1 {
   align-items: center;
 }
 
+.edit-container {
+  display: flex;
+  flex: 0.98;
+}
+
+.edit-container > input {
+  flex: 1;
+}
+
 ul {
   list-style-type:square;
   padding-left: 1rem;

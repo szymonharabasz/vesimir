@@ -91,17 +91,20 @@ function renderTodoInReadMode(todo) {
 
 function renderTodoInEditMode(todo) {
   const li = document.createElement("li");
-  const div = document.createElement("div");
-  div.classList.add("item-container");
-  li.append(div);
+  const itemContainer = document.createElement("div");
+  itemContainer.classList.add("item-container");
+  li.append(itemContainer);
+  const editContainer = document.createElement("div");
+  editContainer.classList.add("edit-container");
+  itemContainer.append(editContainer);
   const input = document.createElement("input");
   input.type = "text";
   input.value = todo.description;
-  div.append(input);
+  editContainer.append(input);
 
   if (!todo.done) {
     const divBtns = document.createElement("div");
-    div.append(divBtns);
+    itemContainer.append(divBtns);
     const saveBtn = document.createElement("button");
     saveBtn.textContent = "Save";
     saveBtn.addEventListener("click", () => {
