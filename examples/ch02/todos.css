@@ -9,6 +9,11 @@ h1 {
   align-items: center;
 }
 
+ul {
+  list-style-type:square;
+  padding-left: 1rem;
+}
+
 .roboto-page {
   font-family: "Roboto", serif;
   font-optical-sizing: auto;
@@ -87,6 +92,7 @@ button.button-cancel {
   background-color: lightpink;
   font-weight: bold;
   overflow: hidden;
+  padding-left: 2rem;
   transition: height 0.3s ease-out;
 }
 
