@@ -19,6 +19,8 @@ const addTodoInput = document.getElementById("todo-input");
 const addTodoButton = document.getElementById("add-todo-btn");
 const todosList = document.getElementById("todos-list");
 const errorList = document.getElementById("errors-list");
+const synth = window.speechSynthesis;
+const voices = synth.getVoices();
 
 for (const todo of todos) {
   todosList.append(renderTodoInReadMode(todo));
@@ -136,6 +138,12 @@ function addTodo() {
     done: false,
   };
   todos.push(newTodo);
+
+  const utterThis = new SpeechSynthesisUtterance(description);
+  utterThis.rate = 1.;
+  utterThis.pitch = 1.2;
+  synth.speak(utterThis);
+
   const todo = renderTodoInReadMode(newTodo);
   todosList.append(todo);
   addTodoInput.value = "";
