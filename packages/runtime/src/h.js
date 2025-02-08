@@ -24,3 +24,10 @@ function mapTextNodes(children) {
 export function hString(str) {
   return { value: str, type: DOM_TYPES.TEXT };
 }
+
+export function hFragment(vNodes) {
+  return {
+    children: mapTextNodes(withoutNulls(vNodes)),
+    type: DOM_TYPES.FRAGMENT,
+  };
+}
